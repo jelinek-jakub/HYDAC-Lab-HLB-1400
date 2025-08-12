@@ -14,8 +14,14 @@ void HLB1400::begin(HardwareSerial& serial, int rxPin, int txPin, int _dePin, in
   dePin = _dePin;
   rePin = _rePin;
 
-  if(dePin != 0) pinMode(dePin,OUTPUT);
-  if(rePin != 0) pinMode(rePin,OUTPUT);
+  if(dePin != 0) {
+    pinMode(dePin,OUTPUT);
+    digitalWrite(dePin, LOW);
+  }
+  if(rePin != 0) {
+    pinMode(rePin,OUTPUT);
+    digitalWrite(rePin, LOW);
+  }
 }
 
 void HLB1400::sendRequest(RequestType type) {
@@ -116,4 +122,5 @@ void HLB1400::PrintFrameHEX(Stream& port) {
         port.print(recvBufferArray[i], HEX);
     }
     port.println();
+
 }
