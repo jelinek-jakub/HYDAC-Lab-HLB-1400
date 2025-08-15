@@ -25,11 +25,12 @@ void HLB1400::begin(HardwareSerial& serial, int rxPin, int txPin, int _dePin, in
 }
 
 void HLB1400::sendRequest(RequestType type) {
-  if(dePin != 0) digitalWrite(dePin, HIGH);
-  if(rePin != 0) digitalWrite(rePin, HIGH);
-  delay(10);
 
   if (!_serial) return;
+
+  if(dePin != 0 || rePin != 0) delay(10);
+  if(dePin != 0) digitalWrite(dePin, HIGH);
+  if(rePin != 0) digitalWrite(rePin, HIGH);
 
   switch (type) {
 
@@ -49,11 +50,16 @@ void HLB1400::sendRequest(RequestType type) {
       break;
   }
 
-  delay(6);
-  delayMicroseconds(500);
-  if(dePin != 0) digitalWrite(dePin, LOW);
-  if(rePin != 0) digitalWrite(rePin, LOW);
-  delay(25);
+  if(dePin != 0 || rePin != 0) {
+    delay(6);
+    delayMicroseconds(500);
+    if(dePin != 0) digitalWrite(dePin, LOW);
+    if(rePin != 0) digitalWrite(rePin, LOW);
+    delay(25);
+  }
+  else {
+    delay(50);
+  }
 }
 
 bool HLB1400::ReadResponse() {
@@ -122,5 +128,4 @@ void HLB1400::PrintFrameHEX(Stream& port) {
         port.print(recvBufferArray[i], HEX);
     }
     port.println();
-
 }
