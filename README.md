@@ -17,7 +17,7 @@
 
 ## 🧰 Hardware Requirements
 
-- **Microcontroller e.g.**:: ATmega328 (Arduino UNO), ESP32 (ESP32 DevKitC), RP2040 (Raspberry Pi Pico) ..
+- **Microcontroller e.g.**: ATmega328 (Arduino UNO), ESP32 (ESP32 DevKitC), RP2040 (Raspberry Pi Pico), ..
 - **RS485 Transceiver**: e.g., MAX485 or similar module
 - **Connections**:
   - Connect the RS485 module to the ESP32 UART pins.
